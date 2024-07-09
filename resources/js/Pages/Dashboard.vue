@@ -26,6 +26,9 @@ import Row from 'primevue/row';                   // optional
                     </DataTable>
                 </div>
             </div>
+            <div>
+                {{ $page.props.user }}
+            </div>
         </div>
     </AppLayout>
 </template>
