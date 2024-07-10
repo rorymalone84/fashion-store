@@ -13,12 +13,21 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+Route::middleware(['dashboard'])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+});
+
+
+Route::middleware(['customer'])->group(function () {
+    Route::get('/customer/dashboard', function () {
+        return Inertia::render('Customer/Dashboard');
+    })->name('customer.dashboard');
+});
+
+Route::middleware(['admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return Inertia::render('Admin/Dashboard');
+    })->name('admin.dashboard');
 });

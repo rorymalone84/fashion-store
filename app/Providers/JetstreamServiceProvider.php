@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use Laravel\Jetstream\Jetstream;
 use App\Actions\Jetstream\DeleteUser;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Jetstream\Jetstream;
+use Laravel\Fortify\Contracts\LoginResponse;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,12 @@ class JetstreamServiceProvider extends ServiceProvider
         $this->configurePermissions();
 
         Jetstream::deleteUsersUsing(DeleteUser::class);
+
+        // register new LoginResponse
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\LoginResponse::class,
+            \App\Http\Responses\LoginResponse::class
+        );
     }
 
     /**
