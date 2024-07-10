@@ -20,7 +20,7 @@ Route::middleware(['dashboard'])->group(function () {
 });
 
 
-Route::middleware(['customer'])->group(function () {
+Route::middleware(['admin'])->group(function () {
     Route::get('/customer/dashboard', function () {
         return Inertia::render('Customer/Dashboard');
     })->name('customer.dashboard');
